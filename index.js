@@ -28,8 +28,9 @@ client.on('message', async function (msg) {
             }
             else if (msg.text.toString() === 'launch'){
                 try{
-                    await term.write( 'shed_up\n');
-                    await term.write( `docker run -it --rm --name prodInfo${num} -v /home/archives/IgorP/source/productInfo/:/usr/src/app -w /usr/src/app node:20 node index.js\n`);
+                    // await term.write( 'shed_up\n');
+                    // await term.write( `docker run -it --rm --name prodInfo${num} -v /home/archives/IgorP/source/productInfo/:/usr/src/app -w /usr/src/app node:20 node index.js\n`);
+                    await pty.exec(`docker run -it --rm --name prodInfo${num} -v /home/archives/IgorP/source/productInfo/:/usr/src/app -w /usr/src/app node:20 node index.js\n`)
                     await client.sendMessage(msg.chat.id, 'Запущен')
                 }catch (e) {
                     console.log(e)
