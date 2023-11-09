@@ -8,7 +8,7 @@ const TelegramBot = require('node-telegram-bot-api'),
     pty = require("node-pty"),
     shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
 let term = pty.spawn(shell, [
-    "ssh simfamily@media\n"
+    "\n"
 ], {});
 term.on('data', async function(data) {
     await console.log(data)
@@ -30,7 +30,7 @@ client.on('message', async function (msg) {
                 try{
                     // await term.write( 'shed_up\n');
                     // await term.write( `docker run -it --rm --name prodInfo${num} -v /home/archives/IgorP/source/productInfo/:/usr/src/app -w /usr/src/app node:20 node index.js\n`);
-                    await pty.exec(`docker run -it --rm --name prodInfo${num} -v /home/archives/IgorP/source/productInfo/:/usr/src/app -w /usr/src/app node:20 node index.js\n`)
+                    await term.write(`docker run -it --rm --name prodInfo${num} -v /home/archives/IgorP/source/productInfo/:/usr/src/app -w /usr/src/app node:20 node index.js\n`)
                     await client.sendMessage(msg.chat.id, 'Запущен')
                 }catch (e) {
                     console.log(e)
