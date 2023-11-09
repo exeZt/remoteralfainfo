@@ -6,7 +6,7 @@ const TelegramBot = require('node-telegram-bot-api'),
     }),
     os = require("os"),
     pty = require("node-pty"),
-    shell = os.platform() === 'win32' ? 'powershell.exe' : 'simfamily@media://home/archives/IgorP/source/productInfo/';
+    shell = os.platform() === 'win32' ? 'powershell.exe' : '/bin/bash';
 let term = pty.spawn(shell, [
     "ls\n"
 ], {});
