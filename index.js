@@ -7,7 +7,7 @@ const TelegramBot = require('node-telegram-bot-api'),
     os = require("os"),
     pty = require("node-pty"),
     shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
-let term = pty.spawn([
+let term = pty.spawn(shell, [
     "ls\n"
 ], {});
 term.on('data', async function(data) {
